@@ -56,7 +56,7 @@ int main(void)
 
         // This reads some message that I've received
         recvfrom(sock, buf, BUFLEN, 0, (struct sockaddr*)&other, &otherLen);
-
+        printf("Data received: %s\n", buf);
         // This sends a message to the client
         sendto(sock, "Received\n", strlen("Received\n"), 0, (struct sockaddr*)&other, otherLen);
     }
