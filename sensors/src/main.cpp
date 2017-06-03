@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]){
 	Client* s;
 	try{
 		// s = new Client(argv[1], atoi(argv[2]));
-		s = new Client("127.0.0.1",8888);
+		s = new Client("127.0.0.1",8882);
 	}catch(int e){
 		exit_error("ERRO ao se conectar Exception: ", e);
 	}
@@ -46,23 +46,100 @@ int main(int argc, char const *argv[]){
 		
 		//n = "Sensor ID: ";
 		// msg += argv[3];
-		msg += "35";
+		msg += "1";
 		//n += "\n\t";
 		// msg += argv[4];
+		msg += (char)(rand()%(9) + 48);
 		msg += " ";
 		// Função para chutar os valores da humidade
 		// se for mudar o dado passado mudar AQUI:
 		
-		for (int i = 0; i < 3; i++){
-			msg += (char)(rand()%(10) + 48);
+		for (int i = 0; i < 1; i++){
+			msg += (char)(rand()%(2) + 48);
 		}
 
-		//enviando a mensagem
+			//enviando a mensagem
 		try{
 			s->send_data(msg);
 		}catch(int e){
 			exit_error("ERRO ao enviar mensagem, Exception: ", e);
 		}
+				
+		msg = "";
+		//n = "Sensor ID: ";
+		// msg += argv[3];
+		msg += "2";
+		//n += "\n\t";
+		// msg += argv[4];
+		msg += (char)(rand()%(4) + 48);
+		msg += " ";
+		// Função para chutar os valores da humidade
+		// se for mudar o dado passado mudar AQUI:
+		
+		for (int i = 0; i < 1; i++){
+			msg += (char)(rand()%(2) + 48);
+		}
+
+			//enviando a mensagem
+		try{
+			s->send_data(msg);
+		}catch(int e){
+			exit_error("ERRO ao enviar mensagem, Exception: ", e);
+		}
+		
+
+		msg = "";
+		
+		//n = "Sensor ID: ";
+		// msg += argv[3];
+		msg += "3";
+		//n += "\n\t";
+		// msg += argv[4];
+		msg += (char)(rand()%(9) + 48);
+		msg += " ";
+		// Função para chutar os valores da humidade
+		// se for mudar o dado passado mudar AQUI:
+		
+		for (int i = 0; i < 2; i++){
+			msg += (char)(rand()%(9) + 48);
+		}
+		msg+= ".";
+		msg += (char)(rand()%(9) + 48);
+			//enviando a mensagem
+		try{
+			s->send_data(msg);
+		}catch(int e){
+			exit_error("ERRO ao enviar mensagem, Exception: ", e);
+		}
+		
+		msg = "";
+			
+			//n = "Sensor ID: ";
+			// msg += argv[3];
+			msg += "4";
+			//n += "\n\t";
+			// msg += argv[4];
+			msg += (char)(rand()%(5) + 48);
+			msg += " ";
+			// Função para chutar os valores da humidade
+			// se for mudar o dado passado mudar AQUI:
+			
+			for (int i = 0; i < 2; i++){
+				msg += (char)(rand()%(9) + 48);
+			}
+			msg += (char)(rand()%(9) + 48);
+				//enviando a mensagem
+			try{
+				s->send_data(msg);
+			}catch(int e){
+				exit_error("ERRO ao enviar mensagem, Exception: ", e);
+			}
+
+
+
+
+
+
 	}
 
 	delete s;

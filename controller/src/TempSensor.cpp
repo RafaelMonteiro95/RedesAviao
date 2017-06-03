@@ -12,6 +12,9 @@
 using namespace std; //strings
 
 TempSensor::TempSensor() {
+	for(int i = 0; i < this->max_sensors; i++){
+		data.push_back(this->initial);
+	}
 }
 
 TempSensor::~TempSensor() {
@@ -19,9 +22,17 @@ TempSensor::~TempSensor() {
 
     // Envia Mensagem
 string TempSensor::getData(){
-    return "test";
+	double sum = 0;
+	string result = "Temp. média: ";
+	for(int i = 0; i < this->max_sensors; i++){
+		sum += data[i];
+	}
+	result += to_string(sum/(double)this->max_sensors);
+ 	result += " ºC";
+    return result;
 }
 
     // Recebe Mensagem
-void TempSensor::updateData(string msg){
+void TempSensor::updateData(int id, string msg){
+	data[id] = stof(msg);
 }

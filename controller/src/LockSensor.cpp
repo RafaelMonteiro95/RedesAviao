@@ -4,23 +4,45 @@
 
 // C++ includes
 #include <string> // strings
-
-//header include
+#include <iostream>
 #include "LockSensor.hpp"
+//header include
 
 using namespace std; //strings
 
 LockSensor::LockSensor() {
+	for(int i = 0; i < this->max_sensors; i++){
+		data.push_back(this->initial);
+	}
 }
 
 LockSensor::~LockSensor() {
 }
 
-    // Envia Mensagem
+// Envia Mensagem
 string LockSensor::getData(){
-    return "test";
+    string result = "Casa ";
+    bool unlocked = false, locked = false;
+    for(int i = 0; i < this->max_sensors; i++){
+    	if(data[i] == false){
+    		locked = true;
+    	}
+    	if(data[i] == true){
+    		unlocked = true;
+    	}
+
+    }
+    if(locked == true and unlocked == true){
+    	result += "parcialmente trancada";
+    } else if(locked == false and unlocked == true){
+    	result += "totalmente aberta";
+    } else {
+    	result += "trancada";
+    }
+    return result;
 }
 
     // Recebe Mensagem
-void LockSensor::updateData(string msg){
+void LockSensor::updateData(int id, string msg){
+	data[id] = msg.compare("0") == 0 ? false : true;
 }
