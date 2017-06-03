@@ -32,6 +32,7 @@ string LockSensor::getData(){
     	}
 
     }
+    
     if(locked == true and unlocked == true){
     	result += "parcialmente trancada";
     } else if(locked == false and unlocked == true){
@@ -42,7 +43,7 @@ string LockSensor::getData(){
     return result;
 }
 
-    // Recebe Mensagem
+// Recebe Mensagem
 void LockSensor::updateData(int id, string msg){
 	data[id] = msg.compare("0") == 0 ? false : true;
 }

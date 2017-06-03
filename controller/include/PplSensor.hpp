@@ -9,9 +9,14 @@ using namespace std; //string
 
 class PplSensor {
 private:
-	vector<bool> data;
-	const bool initial = false;
+	vector<pair<double, double>> data;
+	const pair<double, double> initial = make_pair(-1.0, -1.0);
 	const int max_sensors = 4;
+	
+	const double x_max = 30.0;
+	const double y_max = 30.0;
+	const double x_min = 0.0;
+	const double y_min = 0.0;
 
 public:
     PplSensor();

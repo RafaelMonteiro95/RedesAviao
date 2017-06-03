@@ -76,11 +76,19 @@ int main(int argc, char const *argv[]){
 		// Função para chutar os valores da humidade
 		// se for mudar o dado passado mudar AQUI:
 		
-		for (int i = 0; i < 1; i++){
-			msg += (char)(rand()%(2) + 48);
+		for (int i = 0; i < 2; i++){
+			msg += (char)(rand()%(9) + 48);
 		}
+		msg+= ".";
+		msg += (char)(rand()%(9) + 48);
 
+		msg += " ";
 			//enviando a mensagem
+		for (int i = 0; i < 2; i++){
+			msg += (char)(rand()%(9) + 48);
+		}
+		msg+= ".";
+		msg += (char)(rand()%(9) + 48);
 		try{
 			s->send_data(msg);
 		}catch(int e){
