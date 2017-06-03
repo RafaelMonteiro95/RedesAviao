@@ -1,16 +1,14 @@
 #include <iostream>
 #include <string>
-#include "Server.hpp"
+#include "Client.hpp"
 
 int main(void){
 
     string msg;
-    Server* s = new Server(8888);
+    Client* s = new Client("127.0.0.1",8888);
 
     while(true){
-        msg.erase();
-        s->read_data(msg);
-        cout << msg << endl;
+        cin >> msg;
         s->send_data(msg);
     }
 
