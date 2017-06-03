@@ -1,12 +1,16 @@
 // C includes
 #include <netinet/in.h> // Coisas de socket
 #include <string.h> // memset()
+#include <arpa/inet.h>
+
 
 // C++ includes
 #include <string> // strings
 
 //header include
 #include "Server.hpp"
+
+#include <iostream>
 
 using namespace std; //strings
 
@@ -19,7 +23,7 @@ Server::Server(int port) {
     memset((char *) &me, 0, sizeof(me));
     me.sin_family = AF_INET;
     me.sin_port = htons(port);
-    me.sin_addr.s_addr = htonl(INADDR_ANY);
+    me.sin_addr.s_addr = htonl(INADDR_ANY); 
 
     // Dou bind no socket criado
     bind(sock , (struct sockaddr*)&me, sizeof(me));

@@ -22,16 +22,17 @@ void exit_error(string error_str, int Exception){
 
 */
 int main(int argc, char const *argv[]){
-	if(argc < 4){
-		exit_error("ERRO, falta algum Arguemntos\nArguemntos necessarios:\n\t1. Server\n\t2. Port\n\t3. Sensor ID\n\t4. Tipo de atributo\n", 0);
-	}
+	// if(argc < 4){
+	// 	exit_error("ERRO, falta algum Arguemntos\nArguemntos necessarios:\n\t1. Server\n\t2. Port\n\t3. Sensor ID\n\t4. Tipo de atributo\n", 0);
+	// }
  	
 	// Criando conexão com o servidor e a porta passados por parametros da std arg
 	//		Nota: ela ira mandar a mensagem para a porta do servidor especificado
 	//		idependente se existe algum servidor ouvindo a essa porta
 	Client* s;
 	try{
-		s = new Client(argv[1], atoi(argv[2]));
+		// s = new Client(argv[1], atoi(argv[2]));
+		s = new Client("127.0.0.1",8888);
 	}catch(int e){
 		exit_error("ERRO ao se conectar Exception: ", e);
 	}
@@ -44,10 +45,10 @@ int main(int argc, char const *argv[]){
 		msg = "";
 		
 		//n = "Sensor ID: ";
-		msg += argv[3];
+		// msg += argv[3];
+		msg += "35";
 		//n += "\n\t";
-		msg += " ";
-		msg += argv[4];
+		// msg += argv[4];
 		msg += " ";
 		// Função para chutar os valores da humidade
 		// se for mudar o dado passado mudar AQUI:
