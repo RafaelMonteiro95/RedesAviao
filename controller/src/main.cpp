@@ -16,8 +16,8 @@ int parseMsgId(string msg){
     return atoi(id);
 }
 
-void update_data(Server* s, LockSensor* lock, PplSensor* ppl, PwrSensor* pwr, TempSensor* temp, bool exit){
-    while(!exit){
+void update_data(Server* s, LockSensor* lock, PplSensor* ppl, PwrSensor* pwr, TempSensor* temp, bool *exit){
+    while(!(*exit)){
         string msg;
         //Read a message
         msg.erase();
@@ -72,7 +72,7 @@ int main(void){
     PwrSensor* pwr = new PwrSensor();
     TempSensor* temp = new TempSensor();
     bool exit = false;
-    thread update_data_thread (update_data, s, lock, ppl, pwr, temp, exit);
+    thread update_data_thread (update_data, s, lock, ppl, pwr, temp, &exit);
 
     string in;
     while(!exit){
@@ -87,7 +87,7 @@ int main(void){
     }
 
     // espera a thread terminar
-    // update_data_thread.join();
+    update_data_thread.join();
     delete s;
     return 0;
 }
