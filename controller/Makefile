@@ -1,7 +1,7 @@
 #Makefile criado por Lucas Alexandre Soares, adaptado por Rafael Augusto Monteiro
 
 # Project name
-NAME=Sensor
+NAME=Controller
 
 # Directories
 INCDIR=include
