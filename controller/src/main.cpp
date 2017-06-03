@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <thread>
+
 #include "Server.hpp"
 #include "LockSensor.hpp"
 #include "PplSensor.hpp"
@@ -14,20 +16,9 @@ int parseMsgId(string msg){
     return atoi(id);
 }
 
-int main(void){
-
-    string msg;
-
-    //Starting my server
-    Server* s = new Server(8882);
-
-    //Creating all my sensors
-    LockSensor* lock = new LockSensor();
-    PplSensor* ppl = new PplSensor();
-    PwrSensor* pwr = new PwrSensor();
-    TempSensor* temp = new TempSensor();
-
-    while(true){
+void update_data(Server* s, LockSensor* lock, PplSensor* ppl, PwrSensor* pwr, TempSensor* temp, bool exit){
+    while(!exit){
+        string msg;
         //Read a message
         msg.erase();
         s->read_data(msg);
@@ -58,15 +49,45 @@ int main(void){
             default:
                 break;
         }
+    }
+}
 
+void get_data(LockSensor* lock, PplSensor* ppl, PwrSensor* pwr, TempSensor* temp){
         // updates results
         cout << "Locks Sensor:" << lock->getData() << endl;
         cout << "People Sensor:" << ppl->getData() << endl;
         cout << "Power Sensor:" << pwr->getData() << endl;
         cout << "Temperature Sensor:" << temp->getData() << endl;
+}
+
+int main(void){
+
+
+    //Starting my server
+    Server* s = new Server(8882);
+
+    //Creating all my sensors
+    LockSensor* lock = new LockSensor();
+    PplSensor* ppl = new PplSensor();
+    PwrSensor* pwr = new PwrSensor();
+    TempSensor* temp = new TempSensor();
+    bool exit = false;
+    thread update_data_thread (update_data, s, lock, ppl, pwr, temp, exit);
+
+    string in;
+    while(!exit){
+        cin >> in ;
+        if(in.compare("update") == 0){
+            get_data(lock, ppl, pwr, temp);
+        }
+        if(in.compare("exit") == 0){
+            exit = true;
+        }
+
     }
 
-
+    // espera a thread terminar
+    // update_data_thread.join();
     delete s;
     return 0;
 }
