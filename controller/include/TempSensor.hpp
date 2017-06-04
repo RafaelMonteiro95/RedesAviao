@@ -1,9 +1,8 @@
-#ifndef _TEMPSENSOR_HPP_
-#define _TEMPSENSOR_HPP_
+#pragma once
 
 #include <string>
 
-using namespace std; //string
+using namespace std;
 
 class TempSensor {
 private:
@@ -18,5 +17,3 @@ public:
     // Recebe Mensagem
     void updateData(string msg);
 };
-
-#endif

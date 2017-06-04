@@ -1,5 +1,4 @@
-#ifndef _PPLSENSOR_HPP_
-#define _PPLSENSOR_HPP_
+#pragma once
 
 #include <string>
 
@@ -18,5 +17,3 @@ public:
     // Recebe Mensagem
     void updateData(string msg);
 };
-
-#endif

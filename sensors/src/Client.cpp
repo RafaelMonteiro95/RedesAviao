@@ -36,6 +36,7 @@ Client::Client(string server, int port) {
 }
 
 Client::~Client(void) {
+	
 }
 
 // Envia Mensagem

@@ -1,10 +1,8 @@
 // C includes
 #include <netinet/in.h> // Coisas de socket
-#include <string.h> // memset()
 
 // C++ includes
 #include <string> // strings
-#include <iostream>
 
 //header include
 #include "TempSensor.hpp"

@@ -1,6 +1,6 @@
 // C includes
 #include <netinet/in.h> // Coisas de socket
-#include <string.h> // memset()
+#include <cstring> // memset()
 #include <arpa/inet.h>
 
 
@@ -9,8 +9,6 @@
 
 //header include
 #include "Server.hpp"
-
-#include <iostream>
 
 using namespace std; //strings
 

@@ -1,9 +1,6 @@
-#ifndef _SERVER_HPP_
-#define _SERVER_HPP_
+#pragma once
 
 #include <netinet/in.h> // Coisas de socket
-#include <string.h> // memset()
-
 #include <string> // strings
 
 #define BUFLEN 512
@@ -28,5 +25,3 @@ public:
     // Recebe Mensagem
     void read_data(string& msg);
 };
-
-#endif

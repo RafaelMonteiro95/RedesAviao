@@ -1,17 +1,16 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include "Server.hpp"
 #include "LockSensor.hpp"
 #include "PplSensor.hpp"
 #include "PwrSensor.hpp"
 #include "TempSensor.hpp"
 
+using namespace std;
+
 int parseMsgId(string msg){
-    //copies the 1st 2 bytes of msg to ID
-    char id[3] = {0};
-    msg.copy(id,2,0);
-    id[3] = '\0';
-    return atoi(id);
+    return atoi(msg.substr(0, 2).c_str());
 }
 
 int main(void){
