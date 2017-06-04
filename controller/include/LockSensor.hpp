@@ -1,5 +1,4 @@
-#ifndef _LOCKSENSOR_HPP_
-#define _LOCKSENSOR_HPP_
+#pragma once
 
 
 #include <string>
@@ -23,5 +22,3 @@ public:
     // Recebe Mensagem
     void updateData(int id, string msg);
 };
-
-#endif

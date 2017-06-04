@@ -1,5 +1,4 @@
-#ifndef _CLIENT_HPP_
-#define _CLIENT_HPP_
+#pragma once
 
 #include <netinet/in.h> // Coisas de socket
 #include <string.h> // memset()
@@ -23,5 +22,3 @@ public:
 	// Envia Mensagem
     void send_data(string& msg);
 };
-
-#endif

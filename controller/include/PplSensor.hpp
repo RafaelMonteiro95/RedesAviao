@@ -1,5 +1,4 @@
-#ifndef _PPLSENSOR_HPP_
-#define _PPLSENSOR_HPP_
+#pragma once
 
 #include <string>
 #include <vector>
@@ -28,5 +27,3 @@ public:
     // Recebe Mensagem
     void updateData(int id, string msg);
 };
-
-#endif

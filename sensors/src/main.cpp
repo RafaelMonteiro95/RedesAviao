@@ -1,27 +1,53 @@
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "Client.hpp"
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
 
-void exit_error(string error_str, int Exception){
-	error_str += Exception;
-	printf("%s\n", error_str.c_str());
-	exit(Exception);
-}
+#include "TempSensor.hpp"
+#include "PlugSensor.hpp"
+#include "LockSensor.hpp"
+#include "LocationSensor.hpp"
 
+int main(int argc, char *argv[]){
+	TempSensor *ts;
+	PlugSensor *ps;
+	LockSensor *ls;
+	LocationSensor *locs;
 
-/* Arguemntos:
-		1. Server
-		2. Port
-		3. Sensor ID
-		4. Tipo de atributo
-		5. Others parameters
+	if (argc != 2){
+		printf("Erro\n");
+	}
+	else{
+		if (strlen(argv[1]) != 2){
+			printf("Erro\n");
+		}
+		else{
+			switch (argv[1][0]){
+				case '1':
+					ls = new LockSensor(atoi(argv[1]), "127.0.0.1", 8888);
+					ls->start();
 
-*/
-int main(int argc, char const *argv[]){
+					break;
+				case '2':
+					locs = new LocationSensor(atoi(argv[1]), "127.0.0.1", 8888);
+					locs->start();
+
+					break;
+				case '3':
+					ps = new PlugSensor(atoi(argv[1]), "127.0.0.1", 8888);
+					ps->start();
+
+					break;
+				case '4':
+					ts = new TempSensor(atoi(argv[1]), "127.0.0.1", 8888);
+					ts->start();
+
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
 	// if(argc < 4){
 	// 	exit_error("ERRO, falta algum Arguemntos\nArguemntos necessarios:\n\t1. Server\n\t2. Port\n\t3. Sensor ID\n\t4. Tipo de atributo\n", 0);
 	// }
@@ -29,127 +55,7 @@ int main(int argc, char const *argv[]){
 	// Criando conexão com o servidor e a porta passados por parametros da std arg
 	//		Nota: ela ira mandar a mensagem para a porta do servidor especificado
 	//		idependente se existe algum servidor ouvindo a essa porta
-	Client* s;
-	try{
-		// s = new Client(argv[1], atoi(argv[2]));
-		s = new Client("127.0.0.1",8882);
-	}catch(int e){
-		exit_error("ERRO ao se conectar Exception: ", e);
-	}
-
-	srand(time(NULL));
-
-	string msg; 
-	while(true){
-		sleep( 1 + (rand()/RAND_MAX) );
-		msg = "";
-		
-		//n = "Sensor ID: ";
-		// msg += argv[3];
-		msg += "1";
-		//n += "\n\t";
-		// msg += argv[4];
-		msg += (char)(rand()%(9) + 48);
-		msg += " ";
-		// Função para chutar os valores da humidade
-		// se for mudar o dado passado mudar AQUI:
-		
-		for (int i = 0; i < 1; i++){
-			msg += (char)(rand()%(2) + 48);
-		}
-
-			//enviando a mensagem
-		try{
-			s->send_data(msg);
-		}catch(int e){
-			exit_error("ERRO ao enviar mensagem, Exception: ", e);
-		}
-				
-		msg = "";
-		//n = "Sensor ID: ";
-		// msg += argv[3];
-		msg += "2";
-		//n += "\n\t";
-		// msg += argv[4];
-		msg += (char)(rand()%(4) + 48);
-		msg += " ";
-		// Função para chutar os valores da humidade
-		// se for mudar o dado passado mudar AQUI:
-		
-		for (int i = 0; i < 2; i++){
-			msg += (char)(rand()%(9) + 48);
-		}
-		msg+= ".";
-		msg += (char)(rand()%(9) + 48);
-
-		msg += " ";
-			//enviando a mensagem
-		for (int i = 0; i < 2; i++){
-			msg += (char)(rand()%(9) + 48);
-		}
-		msg+= ".";
-		msg += (char)(rand()%(9) + 48);
-		try{
-			s->send_data(msg);
-		}catch(int e){
-			exit_error("ERRO ao enviar mensagem, Exception: ", e);
-		}
-		
-
-		msg = "";
-		
-		//n = "Sensor ID: ";
-		// msg += argv[3];
-		msg += "3";
-		//n += "\n\t";
-		// msg += argv[4];
-		msg += (char)(rand()%(9) + 48);
-		msg += " ";
-		// Função para chutar os valores da humidade
-		// se for mudar o dado passado mudar AQUI:
-		
-		for (int i = 0; i < 2; i++){
-			msg += (char)(rand()%(9) + 48);
-		}
-		msg+= ".";
-		msg += (char)(rand()%(9) + 48);
-			//enviando a mensagem
-		try{
-			s->send_data(msg);
-		}catch(int e){
-			exit_error("ERRO ao enviar mensagem, Exception: ", e);
-		}
-		
-		msg = "";
-			
-			//n = "Sensor ID: ";
-			// msg += argv[3];
-			msg += "4";
-			//n += "\n\t";
-			// msg += argv[4];
-			msg += (char)(rand()%(5) + 48);
-			msg += " ";
-			// Função para chutar os valores da humidade
-			// se for mudar o dado passado mudar AQUI:
-			
-			for (int i = 0; i < 2; i++){
-				msg += (char)(rand()%(9) + 48);
-			}
-			msg += (char)(rand()%(9) + 48);
-				//enviando a mensagem
-			try{
-				s->send_data(msg);
-			}catch(int e){
-				exit_error("ERRO ao enviar mensagem, Exception: ", e);
-			}
 
 
-
-
-
-
-	}
-
-	delete s;
 	return 0;
 }

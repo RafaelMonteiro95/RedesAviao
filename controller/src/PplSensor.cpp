@@ -1,6 +1,5 @@
 // C includes
 #include <netinet/in.h> // Coisas de socket
-#include <string.h> // memset()
 #include <iterator> // std::istream_iterator
 // C++ includes
 #include <string> // strings
