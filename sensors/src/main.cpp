@@ -8,11 +8,12 @@
 #include "LocationSensor.hpp"
 
 int main(int argc, char *argv[]){
+	LocationSensor *locs;
 	TempSensor *ts;
 	PlugSensor *ps;
 	LockSensor *ls;
-	LocationSensor *locs;
 
+	// Parâmetros dos sensores recebidos via argumento na execução
 	if (argc != 2){
 		printf("Erro\n");
 	}
@@ -47,15 +48,6 @@ int main(int argc, char *argv[]){
 			}
 		}
 	}
-
-	// if(argc < 4){
-	// 	exit_error("ERRO, falta algum Arguemntos\nArguemntos necessarios:\n\t1. Server\n\t2. Port\n\t3. Sensor ID\n\t4. Tipo de atributo\n", 0);
-	// }
- 	
-	// Criando conexão com o servidor e a porta passados por parametros da std arg
-	//		Nota: ela ira mandar a mensagem para a porta do servidor especificado
-	//		idependente se existe algum servidor ouvindo a essa porta
-
 
 	return 0;
 }

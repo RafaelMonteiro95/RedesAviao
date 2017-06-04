@@ -1,11 +1,11 @@
-// C includes
-#include <netinet/in.h> // Coisas de socket
+// C
+#include <netinet/in.h>
 
-// C++ includes
-#include <string> // strings
+// C++
+#include <string>
 #include <iostream>
 
-//header include
+// System
 #include "PwrSensor.hpp"
 
 using namespace std; //strings
@@ -17,17 +17,22 @@ PwrSensor::PwrSensor() {
 }
 
 PwrSensor::~PwrSensor() {
+
 }
 
-    // Envia Mensagem
+// Envia Mensagem
 string PwrSensor::getData(){
-	int sum = 0;
-	for(int i = 0; i < this->max_sensors; i++){
+	string ans;
+	int sum, i;
+
+	for(i = 0, sum = 0; i < this->max_sensors; i++){
 		sum += data[i];
 	}
-	string result = to_string(sum);
- 	result += " kW/h";
-    return result;
+
+	ans = to_string(sum);
+ 	ans += " kW/h";
+ 	
+    return ans;
 }
 
     // Recebe Mensagem

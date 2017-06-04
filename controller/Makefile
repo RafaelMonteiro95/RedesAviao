@@ -27,7 +27,7 @@ OBJCPP=$(filter-out %.c, $(_OBJCPP))
 OBJ= $(OBJCPP)
 
 CC=g++
-CFLAGS=-I./$(INCDIR) -pthread -Wall -O2
+CFLAGS=-I./$(INCDIR) -pthread -std=c++11 -Wall
 
 USER_LIBS=
 DEFAULT_LIBS=

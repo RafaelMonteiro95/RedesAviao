@@ -8,6 +8,10 @@
 #include "Client.hpp"
 #include "LockSensor.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 LockSensor::LockSensor() {
 	this->c = NULL;
 	this->id = 0;
@@ -43,6 +47,8 @@ void LockSensor::start() {
 
 		// Sending data
 		this->c->send_data(str);
+
+		cout << str << endl;
 
 		sleep(3);
 	}

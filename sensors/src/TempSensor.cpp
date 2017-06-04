@@ -8,6 +8,10 @@
 #include "Client.hpp"
 #include "TempSensor.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 TempSensor::TempSensor() {
 	this->c = NULL;
 	this->id = 0;
@@ -33,8 +37,8 @@ void TempSensor::start() {
 	while (true) {
 		// Generating random values
 		this->t += rand() % 7 - 3;
-		this->t = min(this->t, 50);
-		this->t = max(this->t, 0);
+		this->t = min(this->t, 40);
+		this->t = max(this->t, 5);
 
 		// Filling stream
 		s.str("");
@@ -43,6 +47,7 @@ void TempSensor::start() {
 
 		// Sending data
 		this->c->send_data(str);
+		cout << str << endl;
 
 		sleep(3);
 	}

@@ -10,7 +10,9 @@
 using namespace std; //strings
 
 LockSensor::LockSensor() {
-	for(int i = 0; i < this->max_sensors; i++){
+    int i;
+
+	for (i = 0; i < this->max_sensors; i++) {
 		data.push_back(this->initial);
 	}
 }
@@ -21,28 +23,34 @@ LockSensor::~LockSensor() {
 // Envia Mensagem
 string LockSensor::getData(){
     string result = "Casa ";
-    bool unlocked = false, locked = false;
-    for(int i = 0; i < this->max_sensors; i++){
-    	if(data[i] == false){
-    		locked = true;
-    	}
-    	if(data[i] == true){
+    bool unlocked, locked;
+    int i;
+
+    unlocked = locked = false;
+
+    for(i = 0; i < this->max_sensors; i++){
+    	if (data[i]) {
     		unlocked = true;
     	}
-
+        else{
+            locked = true;
+        }
     }
     
-    if(locked == true and unlocked == true){
+    if (locked and unlocked) {
     	result += "parcialmente trancada";
-    } else if(locked == false and unlocked == true){
+    }
+    else if (locked == false and unlocked == true) {
     	result += "totalmente aberta";
-    } else {
+    }
+    else {
     	result += "trancada";
     }
+
     return result;
 }
 
 // Recebe Mensagem
 void LockSensor::updateData(int id, string msg){
-	data[id] = msg.compare("0") == 0 ? false : true;
+    data[id] = msg == "1";
 }

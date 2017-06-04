@@ -15,11 +15,12 @@
 using namespace std; //strings
 
 Client::Client(string server, int port) {
+	const char *srv = server.c_str();
 
-	const char* srv = server.c_str();
 	// Criação do Socket
 	sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-	if (sock == -1){
+
+	if (sock == -1) {
 		printf("ERRO scoket() returned '-1'\n");
 		throw -1;
 	}
@@ -29,7 +30,7 @@ Client::Client(string server, int port) {
 	other.sin_family = AF_INET;
 	other.sin_port = htons(port);
 
-	if(inet_aton(srv, &other.sin_addr) == 0){
+	if (inet_aton(srv, &other.sin_addr) == 0) {
 		printf("ERRO inet_aton() returned '0'\n");
 		throw -2;
 	}
@@ -41,8 +42,9 @@ Client::~Client(void) {
 
 // Envia Mensagem
 void Client::send_data(string& msg){
-	const char* temp = msg.c_str();
-	if(sendto(sock, temp, msg.size(), 0, (struct sockaddr*)&other, sizeof(other)) == -1){
+	const char *temp = msg.c_str();
+
+	if (sendto(sock, temp, msg.size(), 0, (struct sockaddr*)&other, sizeof(other)) == -1) {
 		printf("ERRO sendto() returned '-1'\n");
 		throw -3;
 	}

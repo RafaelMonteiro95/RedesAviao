@@ -8,6 +8,10 @@
 #include "Client.hpp"
 #include "PlugSensor.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 PlugSensor::PlugSensor() {
 	this->c = NULL;
 	this->id = 0;
@@ -33,9 +37,9 @@ void PlugSensor::start() {
 
 	while (true) {
 		// Generating random values
-		n = rand() % 300 + 50;
+		n = rand() % 31 + 20;
 
-		if (rand() % 3 == 0){
+		if (rand() % 3 != 0){
 			this->w = rand() % 151 + 50;
 		}
 		else{
@@ -52,6 +56,8 @@ void PlugSensor::start() {
 
 			// Sending data
 			this->c->send_data(str);
+
+			cout << str << endl;
 
 			sleep(1);
 		}

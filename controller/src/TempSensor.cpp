@@ -1,37 +1,43 @@
-// C includes
-#include <netinet/in.h> // Coisas de socket
+// C
+#include <netinet/in.h>
 
-// C++ includes
-#include <string> // strings
+// C++
+#include <string>
 
-//header include
+// System
 #include "TempSensor.hpp"
 
-using namespace std; //strings
+using namespace std;
 
 TempSensor::TempSensor() {
-	for(int i = 0; i < this->max_sensors; i++){
+	int i;
+
+	for (i = 0; i < this->max_sensors; i++) {
 		data.push_back(this->initial);
 	}
 }
 
 TempSensor::~TempSensor() {
+
 }
 
-    // Envia Mensagem
+// Envia Mensagem
 string TempSensor::getData(){
-	double sum = 0;
-	string result = "Temp. média: ";
+	string ans = "Temp. média: ";
+	double sum = 0.0;
+	int i;
 	
-	for(int i = 0; i < this->max_sensors; i++){
+	for (i = 0; i < this->max_sensors; i++) {
 		sum += data[i];
 	}
-	result += to_string(sum/(double)this->max_sensors);
- 	result += " ºC";
-    return result;
+
+	ans += to_string(sum / (double)this->max_sensors);
+ 	ans += " ºC";
+
+    return ans;
 }
 
-    // Recebe Mensagem
+// Recebe Mensagem
 void TempSensor::updateData(int id, string msg){
 	data[id] = stof(msg);
 }
