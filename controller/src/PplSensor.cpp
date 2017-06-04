@@ -21,12 +21,15 @@ PplSensor::~PplSensor() {
     // Envia Mensagem
 string PplSensor::getData(){
 	int num_of_ppl = 0;
-	for(int i = 0; i < this->max_sensors; i++){
+
+	for(int i = 0; i < this->max_sensors; i++) {
+
 		if(data[i].first <= this->x_max and data[i].second <= this->y_max
-		and data[i].first >= this->x_min and data[i].second >= this->y_min){
+		and data[i].first >= this->x_min and data[i].second >= this->y_min) {
 			num_of_ppl++;
 		}
 	}
+
 	string result = to_string(num_of_ppl);
 	result += " moradores na casa.";
     return result;

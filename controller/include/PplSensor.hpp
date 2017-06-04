@@ -9,7 +9,7 @@ using namespace std; //string
 class PplSensor {
 private:
 	vector<pair<double, double>> data;
-	const pair<double, double> initial = make_pair(-1.0, -1.0);
+	const pair<double, double> initial = make_pair(0,0);
 	const int max_sensors = 4;
 	
 	const double x_max = 30.0;

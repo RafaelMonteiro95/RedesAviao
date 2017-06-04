@@ -22,6 +22,7 @@ TempSensor::~TempSensor() {
 string TempSensor::getData(){
 	double sum = 0;
 	string result = "Temp. média: ";
+	
 	for(int i = 0; i < this->max_sensors; i++){
 		sum += data[i];
 	}

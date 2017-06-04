@@ -27,7 +27,7 @@ OBJCPP=$(filter-out %.c, $(_OBJCPP))
 OBJ= $(OBJCPP)
 
 CC=g++
-CFLAGS=-I./$(INCDIR) -pthread
+CFLAGS=-I./$(INCDIR) -pthread -Wall -O2
 
 USER_LIBS=
 DEFAULT_LIBS=
@@ -43,12 +43,12 @@ all: checkdirs clean main
 
 # Compile directives
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEPS)
-	@echo Building $*
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	echo Building $*
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPS)
-	@echo Building $*
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	echo Building $*
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
 	@echo Linking object files
